@@ -1,5 +1,8 @@
 # README
 ---
+<img width="1440" alt="qrcode" src="https://github.com/Abo5/QRCodeApp-RubyonRails/assets/40110835/3910dc16-4ed6-4490-b67a-faedec2aba23">
+
+
 
 # QR Code Generator
 
