@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Error</title>
+</head>
+<body>
+  <h1>Error</h1>
+  <% if flash[:error].present? %>
+    <p><%= flash[:error] %></p>
+  <% end %>
+</body>
+</html>

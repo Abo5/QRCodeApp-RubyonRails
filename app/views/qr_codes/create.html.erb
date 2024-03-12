@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(45deg, #000000, #1a1a1a);
+            color: #00ff00;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #00ff00;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #00ff00;
+            color: #000000;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;
+        }
+
+        #qr-code {
+            margin-top: 2rem;
+            margin-bottom: 2rem; /* Added margin-bottom */
+        }
+
+        #download-btn {
+            margin-top: 1rem;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #00ff00;
+            color: #000000;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            transform: rotate(200deg);
+        }
+
+        #download-btn:hover {
+            background-color: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;
+        }
+
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            }
+            to {
+                text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <form action="<%= create_path %>" method="get">
+            <input type="text" name="url" id="url" value="<%= params[:url] %>" placeholder="Enter URL" required>
+            <input type="submit" value="Generate QR Code">
+        </form>
+        <% if defined?(@image_qrcode) %>
+            <div id="qr-code">
+                <%= image_tag("data:image/png;base64, #{@image_qrcode}") %>
+            </div>
+            <a href="<%= download_path(@image_qrcode) %>" id="download-btn" download>Download QR Code</a>
+        <% end %>
+    </div>
+</body>
+</html>
